@@ -2,10 +2,13 @@
 #define DoubleDegits7SegmentsLED_h
 #include "Arduino.h"
 
+//2桁の7セグメントを扱えるクラスです
+//数字(0-9)とアルファベット(一部)を表示できます
+//ドット「.」には対応してません
 class DoubleDegits7SegmentsLED
 {
 	public:
-		static const long WRITE_DELAY = 8;
+		static const long WRITE_DELAY = 8;//文字を書き込むときのdelayの初期値
 		DoubleDegits7SegmentsLED(long writeDelay = WRITE_DELAY);
 		void attach(int topPIN, int upperRightPIN, int upperLeftPIN, int middlePIN, int lowerRightPIN, int lowerLeftPIN, int bottomPIN, int tenthsPlacePIN, int onesPlacePIN);
 		void write(char tenths, char ones);
@@ -16,6 +19,7 @@ class DoubleDegits7SegmentsLED
 		void writeTextWithDelay(long delay, String text);
 		void writeNumber(int number, bool twoDegits = false);
 		void writeNumberWithDelay(long delay, int number, bool twoDegits = false);
+		void testWrite();
 	private:
 		enum E_PLACE {BOTH, TENTHS, ONES};//書き込み先（10の位、1の位、両方）
 		int m_writeDelay;
